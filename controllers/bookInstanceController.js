@@ -123,7 +123,7 @@ exports.bookinstance_delete_post = function(req, res) {
       // Successful, so delete.
       BookInstance.findByIdAndRemove(req.body.bookinstanceid, function deleteBookinstance(err) {
         if (err) { return next(err); }
-        // Success - go to author list
+        // Success - go to book instances list
         res.redirect('/catalog/bookinstances')
       })
     })
