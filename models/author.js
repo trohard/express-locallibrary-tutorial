@@ -27,12 +27,24 @@ AuthorSchema
   let dob = "Unknown";
   let dod = "";
   if (this.date_of_birth) {
-    dob = moment(this.date_of_birth).format('MMMM Do, YYYY');
+    dob = moment(this.date_of_birth).utc().format('MMMM Do, YYYY');
   }
   if (this.date_of_death) {
-    dod = moment(this.date_of_death).format('MMMM Do, YYYY');
+    dod = moment(this.date_of_death).utc().format('MMMM Do, YYYY');
   }
   return dob + " - " + dod;
+});
+
+AuthorSchema
+.virtual('dob_form_format')
+.get(function () {
+  return moment(this.date_of_birth).utc().format('YYYY-MM-DD');
+});
+
+AuthorSchema
+.virtual('dod_form_format')
+.get(function () {
+  return moment(this.date_of_death).utc().format('YYYY-MM-DD');
 });
 
 // Virtual for author's URL
