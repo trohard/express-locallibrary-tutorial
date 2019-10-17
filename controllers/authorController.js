@@ -176,7 +176,6 @@ exports.author_update_post = [
 
     // Process request after validation and sanitization.
     (req, res, next) => {
-console.log(req.body.date_of_birth);
         // Extract the validation errors from a request.
         const errors = validationResult(req);
 
@@ -197,7 +196,6 @@ console.log(req.body.date_of_birth);
                     date_of_death: req.body.date_of_death,
                     _id:req.params.id
                 });
-console.log(author);
             Author.findByIdAndUpdate(req.params.id, author, {}, function (err, theauthor) {
                 if (err) { return next(err); }
                 // Successful - redirect to updated author record.
